@@ -4,21 +4,21 @@ import "react-datepicker/dist/react-datepicker.css";
 import notifSound from "./assets/sounds/notif-sound.mp3";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import PersonalInfo from "./components/UILayout/PersonalInfo";
+import ContactInfo from "./components/UILayout/ContactInfo";
 import ReservationDetails from "./components/UILayout/ReservationDetails";
-import validateUserInfo from "./components/ValidateUserInfo";
+import validateUserInfo from "./functions/ValidateUserInfo";
 
 import { SubmitButton } from "./styles/Buttons";
-
-function App() {
+import { ThemeProvider } from "styled-components";
+import { theme } from "./styles/theme";
+import { SectionWrapper } from "./styles/Wrappers";
+const App = () => {
   const initialState = {
-    firstName: "",
-    surname: "",
+    name: "",
     email: "",
     phoneNumber: "",
     reservationDate: new Date(),
-    reservationTime: "12:00",
-    amountOfPeople: 1,
+    reservationTime: "",
   };
 
   const [userInfo, setUserInfo] = useState(initialState);
@@ -57,28 +57,29 @@ function App() {
   const [errors, setErrors] = useState({});
 
   return (
-    <form className="App" onSubmit={handleSubmit}>
-      <h1>Reservation Page</h1>
-      <div className="wrapper">
-        {/* LEFT COLUMN */}
-        <PersonalInfo
-          userInfo={userInfo}
-          handleChange={handleChange}
-          errors={errors}
-        />
+    <ThemeProvider theme={theme}>
+      <form className="App" onSubmit={handleSubmit}>
+        <SectionWrapper>
+          {/* LEFT COLUMN */}
+          <ContactInfo
+            userInfo={userInfo}
+            handleChange={handleChange}
+            errors={errors}
+          />
 
-        {/* RIGHT COLUMN */}
-        <ReservationDetails
-          userInfo={userInfo}
-          handleChange={handleChange}
-          handleDateChange={handleDateChange}
-        />
-      </div>
-      {/* SUBMIT BUTTON */}
-      <SubmitButton>Submit</SubmitButton>
-      <ToastContainer />
-    </form>
+          {/* RIGHT COLUMN */}
+          <ReservationDetails
+            userInfo={userInfo}
+            handleChange={handleChange}
+            handleDateChange={handleDateChange}
+          />
+        </SectionWrapper>
+        {/* SUBMIT BUTTON */}
+        <SubmitButton>RESERVE APPOINTMENT</SubmitButton>
+        <ToastContainer />
+      </form>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;

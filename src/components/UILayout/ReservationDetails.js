@@ -1,58 +1,105 @@
-import DatePicker from "react-datepicker";
+import { useState } from "react";
+import {
+  NavWeekButtonWrapper,
+  SectionWrapper,
+  InputContactInfoWrapper,
+  DayHeader,
+  WeekHeader,
+  DayColumn,
+} from "../../styles/Wrappers";
+import { SectionTitle } from "../../styles/Titles";
+import { SimpleButton } from "../../styles/Buttons";
+import {
+  getDayName,
+  getMonthNumber,
+  getMonthName,
+} from "../../functions/formatDates";
+import { getWeekDays } from "../../functions/getWeekDays";
+import { changeWeek } from "../../functions/changeWeek";
+import { setReservation } from "../../functions/setReservation";
 
-export default function ReservationDetails({
-  userInfo,
-  handleChange,
-  handleDateChange,
-}) {
+const ReservationDetails = ({ userInfo, handleChange, handleDateChange }) => {
+  const [currentWeek, setCurrentWeek] = useState(new Date());
+  const [timeCycle, setTimeCycle] = useState("AM"); //AM or PM
+
+  const weekDays = getWeekDays(currentWeek);
+  const startDay = weekDays[0];
+  const endDay = weekDays[6];
+
+  const timeSlots =
+    timeCycle === "AM"
+      ? ["8 AM", "9 AM", "10 AM", "11 AM"]
+      : ["12 PM", "1 PM", "2 PM", "3 PM"];
+  // console.log(`${startDay.getDate()}/${getMonthNumber(startDay)}`);
+  // console.log(`${startDay} till ${endDay}`);
+
   return (
-    <div className="right-column">
-      <div className="people-field">
-        <label>Number of people:</label>
-        <select
-          id="amountOfPeople"
-          value={userInfo.amountOfPeople}
-          onChange={handleChange}
-        >
-          <option value="1">1 Person</option>
-          <option value="2">2 People</option>
-          <option value="3">3 People</option>
-          <option value="4">4 People</option>
-          <option value="5">5 People</option>
-          <option value="6">6+ People</option>
-        </select>
-      </div>
-      {/* select date/time */}
-      <h3>Select date and time:</h3>
-      <div className="date-time-wrapper">
-        <DatePicker
-          selected={userInfo.reservationDate}
-          placeholderText="Select date..."
-          dateFormat="dd/MM/yyyy"
-          onChange={handleDateChange}
-          minDate={new Date()}
-          inline
-        />
-
-        <div className="time">
-          <label>Time:</label>
-          <select
-            id="reservationTime"
-            value={userInfo.reservationTime}
-            onChange={handleChange}
+    <SectionWrapper>
+      <InputContactInfoWrapper>
+        <SectionTitle>
+          {getMonthName(startDay).toUpperCase()} {startDay.getDate()} -{" "}
+          {getMonthName(endDay).toUpperCase()} {endDay.getDate()}
+        </SectionTitle>
+        {/* PREV/NEXT WEEK NAVIGATION */}
+        <NavWeekButtonWrapper>
+          <SimpleButton
+            type="button"
+            onClick={() => changeWeek(-1, currentWeek, setCurrentWeek)}
           >
-            <option value="12:00">12:00</option>
-            <option value="12:15">12:15</option>
-            <option value="12:30">12:30</option>
-            <option value="12:45">12:45</option>
-            <option value="13:00">13:00</option>
-            <option value="13:15">13:15</option>
-            <option value="13:30">13:30</option>
-            <option value="13:45">13:45</option>
-            <option value="14:00">14:00</option>
-          </select>
-        </div>
-      </div>
-    </div>
+            &#60;
+          </SimpleButton>
+          <SimpleButton
+            type="button"
+            onClick={() => changeWeek(1, currentWeek, setCurrentWeek)}
+          >
+            &#62;
+          </SimpleButton>
+        </NavWeekButtonWrapper>
+        {/* AM/PM TIME NAVIGATION */}
+        <NavWeekButtonWrapper>
+          <SimpleButton
+            type="button"
+            $isActive={timeCycle === "AM"}
+            onClick={() => setTimeCycle("AM")}
+          >
+            AM
+          </SimpleButton>
+          <SimpleButton
+            type="button"
+            $isActive={timeCycle === "PM"}
+            onClick={() => setTimeCycle("PM")}
+          >
+            PM
+          </SimpleButton>
+        </NavWeekButtonWrapper>
+      </InputContactInfoWrapper>
+
+      <WeekHeader>
+        {weekDays.map((day, index) => (
+          <DayColumn>
+            <DayHeader key={index}>
+              <p>
+                <strong>{getDayName(day)}</strong>
+              </p>
+              <p>
+                {day.getDate()}/{getMonthNumber(day)}
+              </p>
+            </DayHeader>
+            {timeSlots.map((time, i) => (
+              <SimpleButton
+                key={i}
+                type="button"
+                isSelected={userInfo.reservationTime === time}
+                onClick={() => setReservation(day, time)}
+              >
+                {time}
+              </SimpleButton>
+            ))}
+          </DayColumn>
+        ))}
+      </WeekHeader>
+    </SectionWrapper>
   );
-}
+};
+
+export default ReservationDetails;
