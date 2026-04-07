@@ -21,7 +21,7 @@ const ContactInfo = ({ userInfo, handleChange, errors }) => {
             value={userInfo.name}
             onChange={handleChange}
           />
-          {errors.name && <RequiredError>{errors.name}</RequiredError>}
+          <RequiredError>{errors.name ? errors.name : ""}</RequiredError>
         </ColumnWrapper>
         {/* Email */}
         <ColumnWrapper>
@@ -32,7 +32,7 @@ const ContactInfo = ({ userInfo, handleChange, errors }) => {
             value={userInfo.email}
             onChange={handleChange}
           />
-          {errors.email && <RequiredError>{errors.email}</RequiredError>}
+          <RequiredError>{errors.email ? errors.email : ""}</RequiredError>
         </ColumnWrapper>
         {/* Phone number */}
         <ColumnWrapper>
@@ -43,9 +43,9 @@ const ContactInfo = ({ userInfo, handleChange, errors }) => {
             value={userInfo.phoneNumber}
             onChange={handleChange}
           />
-          {errors.phoneNumber && (
-            <RequiredError>{errors.phoneNumber}</RequiredError>
-          )}
+          <RequiredError>
+            {errors.phoneNumber ? errors.phoneNumber : ""}
+          </RequiredError>
         </ColumnWrapper>
       </InputContactInfoWrapper>
     </SectionWrapper>

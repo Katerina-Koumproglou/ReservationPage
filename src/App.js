@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ContactInfo from "./components/UILayout/ContactInfo";
 import ReservationDetails from "./components/UILayout/ReservationDetails";
-import validateUserInfo from "./functions/ValidateUserInfo";
+import validateUserInfo from "./functions/validateNecessaryFields";
 
 import { SubmitButton } from "./styles/Buttons";
 import { ThemeProvider } from "styled-components";
@@ -18,7 +18,7 @@ const App = () => {
     email: "",
     phoneNumber: "",
     reservationDate: new Date(),
-    reservationTime: "",
+    selectedSlot: null,
   };
 
   const [userInfo, setUserInfo] = useState(initialState);
@@ -49,10 +49,6 @@ const App = () => {
     setErrors({});
   }
 
-  function handleDateChange(date) {
-    setUserInfo((prev) => ({ ...prev, reservationDate: date }));
-  }
-
   //Handle errors
   const [errors, setErrors] = useState({});
 
@@ -71,7 +67,7 @@ const App = () => {
           <ReservationDetails
             userInfo={userInfo}
             handleChange={handleChange}
-            handleDateChange={handleDateChange}
+            errors={errors}
           />
         </SectionWrapper>
         {/* SUBMIT BUTTON */}

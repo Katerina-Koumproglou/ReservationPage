@@ -17,8 +17,9 @@ import {
 import { getWeekDays } from "../../functions/getWeekDays";
 import { changeWeek } from "../../functions/changeWeek";
 import { setReservation } from "../../functions/setReservation";
+import { RequiredError } from "../../styles/Errors";
 
-const ReservationDetails = ({ userInfo, handleChange, handleDateChange }) => {
+const ReservationDetails = ({ userInfo, handleChange, errors }) => {
   const [currentWeek, setCurrentWeek] = useState(new Date());
   const [timeCycle, setTimeCycle] = useState("AM"); //AM or PM
 
@@ -76,7 +77,9 @@ const ReservationDetails = ({ userInfo, handleChange, handleDateChange }) => {
 
       <WeekHeader>
         {weekDays.map((day, index) => (
+          // Wraps the whole column of the day
           <DayColumn>
+            {/* Example: SUN 17/3 */}
             <DayHeader key={index}>
               <p>
                 <strong>{getDayName(day)}</strong>
@@ -89,8 +92,10 @@ const ReservationDetails = ({ userInfo, handleChange, handleDateChange }) => {
               <SimpleButton
                 key={i}
                 type="button"
-                isSelected={userInfo.reservationTime === time}
-                onClick={() => setReservation(day, time)}
+                $isActive={
+                  userInfo.selectedSlot === `${day.toDateString()}-${time}`
+                }
+                onClick={() => setReservation(day, time, handleChange)}
               >
                 {time}
               </SimpleButton>
@@ -98,6 +103,9 @@ const ReservationDetails = ({ userInfo, handleChange, handleDateChange }) => {
           </DayColumn>
         ))}
       </WeekHeader>
+      <RequiredError>
+        {errors.selectedSlot ? errors.selectedSlot : ""}
+      </RequiredError>
     </SectionWrapper>
   );
 };
