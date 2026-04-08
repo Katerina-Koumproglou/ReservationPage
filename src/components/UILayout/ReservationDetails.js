@@ -46,6 +46,27 @@ const ReservationDetails = ({ userInfo, handleChange, errors }) => {
     return false;
   };
 
+  const isDayFullyBooked = (day) => {
+    const allSlots = [
+      "8 AM",
+      "9 AM",
+      "10 AM",
+      "11 AM",
+      "12 PM",
+      "1 PM",
+      "2 PM",
+      "3 PM",
+    ];
+
+    for (let i = 0; i < allSlots.length; i++) {
+      const time = allSlots[i];
+      if (!isTimeSlotBooked(day, time)) {
+        return false;
+      }
+    }
+    return true;
+  };
+
   return (
     <SectionWrapper>
       <InputContactInfoWrapper>
@@ -92,7 +113,7 @@ const ReservationDetails = ({ userInfo, handleChange, errors }) => {
           // Wraps the whole column of the day
           <DayColumn>
             {/* Example: SUN 17/3 */}
-            <DayHeader key={index}>
+            <DayHeader key={index} $isBooked={isDayFullyBooked(day)}>
               <p>
                 <strong>{getDayName(day)}</strong>
               </p>

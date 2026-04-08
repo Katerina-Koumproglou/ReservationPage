@@ -24,7 +24,8 @@ export const SectionWrapper = styled.div`
 export const DayHeader = styled.div`
   display: flex;
   flex-direction: column;
-  color: ${({ theme }) => theme.colors.primary};
+  color: ${({ $isBooked, theme }) =>
+    $isBooked ? theme.colors.disabled : theme.colors.primary};
   font-size: 1rem;
 
   p {
