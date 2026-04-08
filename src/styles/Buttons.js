@@ -33,4 +33,10 @@ export const SimpleButton = styled.button`
   &:first-child {
     border-right: none;
   }
+
+  &:disabled {
+    cursor: not-allowed;
+    color: ${({ theme }) => theme.colors.disabled};
+    border: 0.1rem solid ${({ theme }) => theme.colors.disabled};
+  }
 `;

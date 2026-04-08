@@ -6,5 +6,6 @@ export const theme = {
     secondaryText: "#ffffff",
     primaryBackground: "#ffffff",
     secondaryBackground: "#4d6b76",
+    disabled: "#dcdcdc",
   },
 };

@@ -37,14 +37,31 @@ const ReservationPage = () => {
     setErrors(tempErrors);
     if (Object.keys(tempErrors).length !== 0) return;
 
-    //Reservation submitted successfully
+    //Prepare the new reservation into a string
+    const preparedNewReservation = {
+      ...userInfo,
+      reservationDate: userInfo.reservationDate.toISOString(),
+    };
+    console.log("prepared res: ", preparedNewReservation);
+
+    //Create an array of the already existing reservations
+    const existingReservations =
+      JSON.parse(localStorage.getItem("reservations")) || [];
+    console.log("existing reservations: ", existingReservations);
+
+    //Load new reservation to the array of the existing ones
+    const updatedReservations = [
+      ...existingReservations,
+      preparedNewReservation,
+    ];
+    localStorage.setItem("reservations", JSON.stringify(updatedReservations));
+    console.log("updated reservations: ", localStorage.getItem("reservations"));
+
+    //Reservation submitted successfully alerts
     console.log("Reservation sumbitted for: ", userInfo);
     const sound = new Audio(notifSound);
     sound.play();
     toast.success("Reservation submitted successfully!");
-    // setTimeout(() => {
-    //   alert("Reservation submitted successfully!");
-    // }, 1000);
     setUserInfo(initialState);
     setErrors({});
   }
@@ -56,14 +73,14 @@ const ReservationPage = () => {
     <ThemeProvider theme={theme}>
       <form className="App" onSubmit={handleSubmit}>
         <SectionWrapper>
-          {/* LEFT COLUMN */}
+          {/* CONTACT INFORMATION SECTION */}
           <ContactInfo
             userInfo={userInfo}
             handleChange={handleChange}
             errors={errors}
           />
 
-          {/* RIGHT COLUMN */}
+          {/* RESERVATION DETAILS SECTION */}
           <ReservationDetails
             userInfo={userInfo}
             handleChange={handleChange}
