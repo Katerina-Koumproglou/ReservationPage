@@ -47,3 +47,7 @@ export const WeekHeader = styled.div`
   justify-content: space-between;
   width: 100%;
 `;
+
+export const DropdownContainer = styled.div`
+  position: relative;
+`;

@@ -15,3 +15,18 @@ export const InputContactInfo = styled.input`
     color: ${({ theme }) => theme.colors.primary};
   }
 `;
+
+export const DropdownItem = styled.div`
+  background-color: transparent;
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 1rem;
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.secondaryText};
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
+  }
+`;

@@ -6,6 +6,9 @@ const validateUserInfo = (userInfo) => {
 
   if (!userInfo.selectedSlot)
     tempErrors.selectedSlot = "Please select an available day and time.";
+
+  if (userInfo.amountOfGuests == null)
+    tempErrors.amountOfGuests = "Required field";
   return tempErrors;
 };
 

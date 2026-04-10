@@ -19,6 +19,7 @@ const ReservationPage = () => {
     phoneNumber: "",
     reservationDate: new Date(),
     selectedSlot: null,
+    amountOfGuests: null,
   };
 
   const [userInfo, setUserInfo] = useState(initialState);
@@ -42,12 +43,12 @@ const ReservationPage = () => {
       ...userInfo,
       reservationDate: userInfo.reservationDate.toISOString(),
     };
-    console.log("prepared res: ", preparedNewReservation);
+    // console.log("prepared res: ", preparedNewReservation);
 
     //Create an array of the already existing reservations
     const existingReservations =
       JSON.parse(localStorage.getItem("reservations")) || [];
-    console.log("existing reservations: ", existingReservations);
+    // console.log("existing reservations: ", existingReservations);
 
     //Load new reservation to the array of the existing ones
     const updatedReservations = [
@@ -55,7 +56,7 @@ const ReservationPage = () => {
       preparedNewReservation,
     ];
     localStorage.setItem("reservations", JSON.stringify(updatedReservations));
-    console.log("updated reservations: ", localStorage.getItem("reservations"));
+    // console.log("updated reservations: ", localStorage.getItem("reservations"));
 
     //Reservation submitted successfully alerts
     console.log("Reservation sumbitted for: ", userInfo);
