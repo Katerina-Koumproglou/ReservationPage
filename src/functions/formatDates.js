@@ -1,5 +1,7 @@
+const LOCALES = "en-US";
+
 export const getDayName = (date) => {
-  return date.toLocaleDateString("en-US", { weekday: "short" }).toUpperCase();
+  return date.toLocaleDateString(LOCALES, { weekday: "short" }).toUpperCase();
 };
 
 export const getMonthNumber = (date) => {
@@ -7,5 +9,5 @@ export const getMonthNumber = (date) => {
 };
 
 export const getMonthName = (date) => {
-  return date.toLocaleDateString("en-US", { month: "long" });
+  return date.toLocaleDateString(LOCALES, { month: "long" });
 };

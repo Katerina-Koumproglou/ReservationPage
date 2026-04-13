@@ -7,11 +7,11 @@ import "react-toastify/dist/ReactToastify.css";
 import ContactInfo from "../components/UILayout/ContactInfo";
 import ReservationDetails from "../components/UILayout/ReservationDetails";
 import validateUserInfo from "../functions/validateNecessaryFields";
-
 import { SubmitButton } from "../styles/Buttons";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/theme";
 import { SectionWrapper } from "../styles/Wrappers";
+
 const ReservationPage = () => {
   const initialState = {
     name: "",
@@ -23,6 +23,7 @@ const ReservationPage = () => {
   };
 
   const [userInfo, setUserInfo] = useState(initialState);
+  const [errors, setErrors] = useState({}); //Handle errors
 
   function handleChange(e) {
     const { id, value } = e.target;
@@ -66,9 +67,6 @@ const ReservationPage = () => {
     setUserInfo(initialState);
     setErrors({});
   }
-
-  //Handle errors
-  const [errors, setErrors] = useState({});
 
   return (
     <ThemeProvider theme={theme}>

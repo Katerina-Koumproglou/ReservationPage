@@ -1,5 +1,5 @@
 //Returns an array of dates Sunday-Saturday, but needs shortening
-export const getWeekDays = (date) => {
+const getWeekDays = (date) => {
   const start = new Date(date);
   //Move the day back to Sunday to get the first day of the week
   start.setDate(start.getDate() - start.getDay());
@@ -10,3 +10,5 @@ export const getWeekDays = (date) => {
     return day;
   });
 };
+
+export default getWeekDays;
