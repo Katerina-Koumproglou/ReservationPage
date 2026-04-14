@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export const AppWrapper = styled.div`
+  text-align: center;
+  background-color: white;
+  min-height: 100vh;
+  /* min-width: 150vw; */
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+`;
+
 export const ColumnWrapper = styled.div`
   display: flex;
   flex-direction: column;

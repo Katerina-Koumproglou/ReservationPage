@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "../App.css";
 import "react-datepicker/dist/react-datepicker.css";
 import notifSound from "../assets/sounds/notif-sound.mp3";
 import { ToastContainer, toast } from "react-toastify";
@@ -10,7 +9,7 @@ import validateUserInfo from "../functions/validateNecessaryFields";
 import { SubmitButton } from "../styles/Buttons";
 import { ThemeProvider } from "styled-components";
 import { theme } from "../styles/theme";
-import { SectionWrapper } from "../styles/Wrappers";
+import { AppWrapper, SectionWrapper } from "../styles/Wrappers";
 
 const ReservationPage = () => {
   const initialState = {
@@ -70,7 +69,7 @@ const ReservationPage = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <form className="App" onSubmit={handleSubmit}>
+      <AppWrapper as="form" onSubmit={handleSubmit}>
         <SectionWrapper>
           {/* CONTACT INFORMATION SECTION */}
           <ContactInfo
@@ -89,7 +88,7 @@ const ReservationPage = () => {
         {/* SUBMIT BUTTON */}
         <SubmitButton>RESERVE APPOINTMENT</SubmitButton>
         <ToastContainer />
-      </form>
+      </AppWrapper>
     </ThemeProvider>
   );
 };
