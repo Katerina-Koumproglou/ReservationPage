@@ -7,8 +7,6 @@ import ContactInfo from "../components/UILayout/ContactInfo";
 import ReservationDetails from "../components/UILayout/ReservationDetails";
 import validateUserInfo from "../functions/validateNecessaryFields";
 import { SubmitButton } from "../styles/Buttons";
-import { ThemeProvider } from "styled-components";
-import { theme } from "../styles/theme";
 import { AppWrapper, SectionWrapper } from "../styles/Wrappers";
 
 const ReservationPage = () => {
@@ -68,28 +66,26 @@ const ReservationPage = () => {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <AppWrapper as="form" onSubmit={handleSubmit}>
-        <SectionWrapper>
-          {/* CONTACT INFORMATION SECTION */}
-          <ContactInfo
-            userInfo={userInfo}
-            handleChange={handleChange}
-            errors={errors}
-          />
+    <AppWrapper as="form" onSubmit={handleSubmit}>
+      <SectionWrapper>
+        {/* CONTACT INFORMATION SECTION */}
+        <ContactInfo
+          userInfo={userInfo}
+          handleChange={handleChange}
+          errors={errors}
+        />
 
-          {/* RESERVATION DETAILS SECTION */}
-          <ReservationDetails
-            userInfo={userInfo}
-            handleChange={handleChange}
-            errors={errors}
-          />
-        </SectionWrapper>
-        {/* SUBMIT BUTTON */}
-        <SubmitButton>RESERVE APPOINTMENT</SubmitButton>
-        <ToastContainer />
-      </AppWrapper>
-    </ThemeProvider>
+        {/* RESERVATION DETAILS SECTION */}
+        <ReservationDetails
+          userInfo={userInfo}
+          handleChange={handleChange}
+          errors={errors}
+        />
+      </SectionWrapper>
+      {/* SUBMIT BUTTON */}
+      <SubmitButton>RESERVE APPOINTMENT</SubmitButton>
+      <ToastContainer />
+    </AppWrapper>
   );
 };
 

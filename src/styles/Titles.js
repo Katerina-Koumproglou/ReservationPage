@@ -10,3 +10,10 @@ export const SectionTitle = styled.h2`
   margin-top: 2rem;
   min-width: 20rem;
 `;
+
+export const HeaderTitle = styled.h3`
+  color: ${({ theme }) => theme.colors.secondaryText};
+  text-align: left;
+  font-weight: 400;
+  font-size: 1.3rem;
+`;

@@ -61,3 +61,17 @@ export const WeekHeader = styled.div`
 export const DropdownContainer = styled.div`
   position: relative;
 `;
+
+export const HeaderWrapper = styled.header`
+  background-color: ${({ theme }) => theme.colors.primary};
+  width: 100%;
+`;
+
+export const InnerWrapper = styled.div`
+  margin: 0 auto;
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+`;

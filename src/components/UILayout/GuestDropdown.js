@@ -24,16 +24,16 @@ const GuestDropdown = ({ userInfo, handleChange, errors }) => {
   };
 
   const dropdownRef = useRef();
-  useEffect(() => {
-    let handler = (e) => {
-      if (!dropdownRef.current.contains(e.target)) {
-        setDropdownIsOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handler);
+  const handleClickOutside = (e) => {
+    if (!dropdownRef.current.contains(e.target)) {
+      setDropdownIsOpen(false);
+    }
+  };
 
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.removeEventListener("mousedown", handler);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
 
