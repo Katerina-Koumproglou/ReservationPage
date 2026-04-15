@@ -65,6 +65,10 @@ export const DropdownContainer = styled.div`
 export const HeaderWrapper = styled.header`
   background-color: ${({ theme }) => theme.colors.primary};
   width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.1);
 `;
 
 export const InnerWrapper = styled.div`
@@ -74,4 +78,10 @@ export const InnerWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
+`;
+
+export const FooterWrapper = styled.footer`
+  background-color: ${({ theme }) => theme.colors.secondary};
+  width: 100%;
+  text-align: center;
 `;

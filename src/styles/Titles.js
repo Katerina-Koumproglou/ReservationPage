@@ -17,3 +17,7 @@ export const HeaderTitle = styled.h3`
   font-weight: 400;
   font-size: 1.3rem;
 `;
+
+export const FooterText = styled.p`
+  color: ${({ theme }) => theme.colors.secondaryText};
+`;
