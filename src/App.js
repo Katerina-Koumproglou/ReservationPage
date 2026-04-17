@@ -7,6 +7,7 @@ import Footer from "./components/UILayout/Footer";
 import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import ScrollToTop from "./functions/ScrollToTop";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <GlobalStyles />
       <ThemeProvider theme={theme}>
         <AppWrapper>
+          <ScrollToTop />
           <Header />
 
           <Routes>

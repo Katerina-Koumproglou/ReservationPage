@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import sadDisabled from "../assets/cursors/sad-face.png";
+import { Link } from "react-router-dom";
 
 export const SubmitButton = styled.button`
   margin-top: 1rem;
@@ -11,12 +13,32 @@ export const SubmitButton = styled.button`
 
   &:hover {
     background-color: transparent;
-    color: ${({ theme }) => theme.colors.primary};
     transition:
       background-color 0.3s ease,
       color 0.3s ease;
     border-color: ${({ theme }) => theme.colors.primary};
-    cursor: pointer;
+  }
+`;
+
+export const ReserveButton = styled(Link)`
+  margin-top: 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  line-height: 1;
+  text-decoration: none;
+  border: 0.1rem solid transparent;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  background-color: ${({ theme }) => theme.colors.primary};
+  color: ${({ theme }) => theme.colors.primaryText};
+  transition:
+    transform 0.3s ease,
+    background-color 0.3s ease;
+
+  &:hover {
+    transform: translateY(-0.4rem);
+    background-color: #36dac1;
   }
 `;
 
@@ -28,16 +50,25 @@ export const SimpleButton = styled.button`
   border: 0.1rem solid ${({ theme }) => theme.colors.primary};
   font-size: 1rem;
   padding: 0.3rem 0.8rem;
-  cursor: pointer;
 
   &:first-child {
     border-right: none;
   }
 
   &:disabled {
-    cursor: not-allowed;
+    cursor:
+      url(${sadDisabled}) 16 16,
+      not-allowed;
     color: ${({ theme }) => theme.colors.disabled};
     border: 0.1rem solid ${({ theme }) => theme.colors.disabled};
+  }
+
+  &:hover:not(:disabled) {
+    background-color: ${({ theme }) => theme.colors.primary};
+    color: ${({ theme }) => theme.colors.secondaryText};
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 `;
 
@@ -48,7 +79,6 @@ export const DropdownButton = styled.button`
   box-sizing: border-box;
   font-size: 1rem;
   padding: 0.3rem 0.8rem;
-  cursor: pointer;
   display: flex;
   width: 11rem;
   align-items: center;

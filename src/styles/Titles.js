@@ -21,3 +21,7 @@ export const HeaderTitle = styled.h3`
 export const FooterText = styled.p`
   color: ${({ theme }) => theme.colors.secondaryText};
 `;
+
+export const HomeTitle = styled.h1`
+  color: ${({ theme }) => theme.colors.secondaryText};
+`;

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import cafeteriaBg from "../assets/images/cafeteria2.jpg";
 
 export const AppWrapper = styled.div`
   text-align: center;
@@ -84,4 +85,25 @@ export const FooterWrapper = styled.footer`
   background-color: ${({ theme }) => theme.colors.secondary};
   width: 100%;
   text-align: center;
+`;
+
+export const HomeWrapper = styled.div`
+  background-image: url(${cafeteriaBg});
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const HomeContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: ${({ theme }) => theme.colors.secondaryText};
+  font-size: 1.5rem;
 `;

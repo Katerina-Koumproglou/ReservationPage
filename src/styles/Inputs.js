@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import coffeePointer from "../assets/cursors/coffee-beans.png";
 
 export const InputContactInfo = styled.input`
   color: ${({ theme }) => theme.colors.primary};
@@ -21,7 +22,9 @@ export const DropdownItem = styled.div`
   color: ${({ theme }) => theme.colors.primary};
   font-size: 1rem;
   padding: 0.3rem 0.8rem;
-  cursor: pointer;
+  cursor:
+    url(${coffeePointer}) 16 16,
+    pointer;
   &:hover {
     background-color: ${({ theme }) => theme.colors.primary};
     color: ${({ theme }) => theme.colors.secondaryText};
