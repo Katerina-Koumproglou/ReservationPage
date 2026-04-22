@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import cafeteriaBg from "../assets/images/cafeteria2.jpg";
+import { OverlayText } from "./Titles";
 
 export const AppWrapper = styled.div`
   text-align: center;
@@ -106,4 +107,79 @@ export const HomeContent = styled.div`
   text-align: center;
   color: ${({ theme }) => theme.colors.secondaryText};
   font-size: 1.5rem;
+`;
+
+export const ProductDisplayWrapper = styled.div`
+  display: grid;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  max-width: 85rem;
+  width: 100%;
+  margin: 4rem auto;
+  grid-template-columns: repeat(4, 1fr);
+`;
+
+export const ProductGridItem = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-image: url(${({ $bgImg }) => $bgImg});
+  background-size: cover;
+  background-position: center;
+  min-height: 25rem;
+  align-items: flex-start;
+  justify-content: flex-end;
+  overflow: hidden;
+  transition: transform 0.3s ease-in-out;
+  position: relative;
+  padding: 1.2rem;
+
+  &:nth-child(1) {
+    grid-column: 1/3;
+  }
+
+  &:nth-child(2) {
+    grid-column: 3/5;
+  }
+
+  &:nth-child(4) {
+    grid-column: 2/3;
+    grid-row: 2/4;
+  }
+
+  &:nth-child(5) {
+    grid-column: 3/5;
+    grid-row: 2/4;
+  }
+
+  &:nth-child(7) {
+    grid-column: 1/3;
+  }
+
+  &:before {
+    content: "";
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      hsl(0, 0%, 0%, 0) 5%,
+      hsl(0, 0%, 0%, 0.6)
+    );
+    transition: opacity 0.2s ease-in-out;
+    z-index: 1;
+  }
+
+  &:hover {
+    transform: scale(0.98);
+  }
+
+  &:hover::before {
+    opacity: 0.9;
+  }
+
+  &:hover ${OverlayText} {
+    transform: translateY(-0.8rem);
+  }
 `;

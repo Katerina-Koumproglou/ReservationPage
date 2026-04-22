@@ -25,3 +25,14 @@ export const FooterText = styled.p`
 export const HomeTitle = styled.h1`
   color: ${({ theme }) => theme.colors.secondaryText};
 `;
+
+export const OverlayText = styled.span`
+  display: inline-block;
+  z-index: 2;
+  color: ${({ theme }) => theme.colors.secondaryText};
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0.5rem;
+  position: relative;
+  transition: transform 0.2s ease-in-out;
+`;
