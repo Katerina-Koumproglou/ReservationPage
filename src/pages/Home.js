@@ -1,6 +1,6 @@
 import ProductDisplay from "../components/UILayout/ProductDisplay";
 import { ReserveButton } from "../styles/Buttons";
-import { HomeTitle } from "../styles/Titles";
+import { HomeTitle } from "../styles/Texts";
 import { HomeContent, HomeWrapper } from "../styles/Wrappers";
 
 const Home = () => {

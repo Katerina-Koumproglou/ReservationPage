@@ -4,7 +4,7 @@ import {
   SectionWrapper,
   InputContactInfoWrapper,
 } from "../../styles/Wrappers";
-import { SectionTitle } from "../../styles/Titles";
+import { SectionTitle } from "../../styles/Texts";
 import { SimpleButton } from "../../styles/Buttons";
 import { getMonthName } from "../../functions/formatDates";
 import getWeekDays from "../../functions/getWeekDays";

@@ -1,4 +1,4 @@
-import { FooterText } from "../../styles/Titles";
+import { FooterText } from "../../styles/Texts";
 import { FooterWrapper } from "../../styles/Wrappers";
 
 const Footer = () => {

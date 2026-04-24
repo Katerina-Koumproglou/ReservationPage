@@ -5,7 +5,7 @@ import {
   SectionWrapper,
   ColumnWrapper,
 } from "../../styles/Wrappers";
-import { SectionTitle } from "../../styles/Titles";
+import { SectionTitle } from "../../styles/Texts";
 
 const ContactInfo = ({ userInfo, handleChange, errors }) => {
   return (

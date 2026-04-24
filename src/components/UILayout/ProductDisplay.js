@@ -8,7 +8,7 @@ import interiorSpace from "../../assets/images/interior-space.jpg";
 import smoothie from "../../assets/images/smoothie.jpg";
 import riceBowl from "../../assets/images/rice-bowl.jpg";
 import { ProductDisplayWrapper, ProductGridItem } from "../../styles/Wrappers";
-import { OverlayText } from "../../styles/Titles";
+import { OverlayText } from "../../styles/Texts";
 
 const ProductDisplay = () => {
   return (
@@ -24,7 +24,7 @@ const ProductDisplay = () => {
         <OverlayText>Sweet Delights</OverlayText>
       </ProductGridItem>
       <ProductGridItem $bgImg={wine}>
-        <OverlayText>Wine</OverlayText>
+        <OverlayText>Wines</OverlayText>
       </ProductGridItem>
       <ProductGridItem $bgImg={menu}>
         <OverlayText>Menu</OverlayText>
@@ -37,7 +37,7 @@ const ProductDisplay = () => {
         <OverlayText>Cocktails</OverlayText>
       </ProductGridItem>
       <ProductGridItem $bgImg={smoothie}>
-        <OverlayText>Smoothie</OverlayText>
+        <OverlayText>Smoothies</OverlayText>
       </ProductGridItem>
       <ProductGridItem $bgImg={riceBowl}>
         <OverlayText>Rice Bowls</OverlayText>

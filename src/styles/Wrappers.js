@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import cafeteriaBg from "../assets/images/cafeteria2.jpg";
-import { OverlayText } from "./Titles";
+import { OverlayText } from "./Texts";
 
 export const AppWrapper = styled.div`
   text-align: center;
@@ -51,8 +51,6 @@ export const DayColumn = styled.div`
   gap: 1rem;
 `;
 
-export const TimeSlotContainer = styled.div``;
-
 export const WeekHeader = styled.div`
   display: flex;
   flex-direction: row;
@@ -65,27 +63,42 @@ export const DropdownContainer = styled.div`
 `;
 
 export const HeaderWrapper = styled.header`
-  background-color: ${({ theme }) => theme.colors.primary};
+  background-color: ${({ theme, $isScrolled }) =>
+    $isScrolled ? "rgba(32, 109, 97, 0.5)" : theme.colors.primary};
   width: 100%;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.1);
+  border-bottom: 0.2rem solid
+    ${({ theme, $isScrolled }) =>
+      $isScrolled ? theme.colors.primary : "transparent"};
+  box-shadow: ${({ $isScrolled }) =>
+    $isScrolled ? "0 0.5rem 1rem rgba(0, 0, 0, 0.2)" : "none"};
+  transition:
+    background-color 0.3s ease,
+    border-bottom 0.3s ease,
+    box-shadow 0.3s ease;
 `;
 
 export const InnerWrapper = styled.div`
   margin: 0 auto;
-  padding: 0.5rem 2rem;
+  padding: ${({ $isScrolled }) =>
+    $isScrolled ? "0.3rem 2rem" : "0.9rem 2rem"};
   display: flex;
   justify-content: space-between;
   align-items: center;
   box-sizing: border-box;
+  transition: padding 0.3s ease;
 `;
 
 export const FooterWrapper = styled.footer`
   background-color: ${({ theme }) => theme.colors.secondary};
   width: 100%;
   text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 12vh;
 `;
 
 export const HomeWrapper = styled.div`
@@ -93,7 +106,7 @@ export const HomeWrapper = styled.div`
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  min-height: 100vh;
+  min-height: 70vh;
   width: 100%;
   display: flex;
   align-items: center;

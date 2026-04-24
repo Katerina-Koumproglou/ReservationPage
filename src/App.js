@@ -17,10 +17,12 @@ function App() {
         <AppWrapper>
           <ScrollToTop />
           <Header />
+          <div id="scroll-sentinel" style={{ height: "0" }} />
 
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/reservations" element={<ReservationPage />} />
+            {/* <Route path="/about" /> */}
           </Routes>
 
           <Footer />
