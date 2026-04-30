@@ -8,16 +8,25 @@ import { ThemeProvider } from "styled-components";
 import { theme } from "./styles/theme";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./functions/ScrollToTop";
+import { useState } from "react";
 
-function App() {
+const App = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  window.onscroll = () => {
+    const pxToRem = parseFloat(
+      getComputedStyle(document.documentElement).fontSize,
+    );
+    setIsScrolled(window.scrollY > 6.25 * pxToRem);
+  };
+
   return (
     <BrowserRouter>
       <GlobalStyles />
       <ThemeProvider theme={theme}>
         <AppWrapper>
-          <ScrollToTop />
-          <Header />
-          <div id="scroll-sentinel" style={{ height: "0" }} />
+          <ScrollToTop setIsScrolled={setIsScrolled} />
+          <Header isScrolled={isScrolled} />
 
           <Routes>
             <Route path="/" element={<Home />} />
@@ -30,6 +39,6 @@ function App() {
       </ThemeProvider>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import { DropdownContainer } from "../../styles/Wrappers";
 import { DropdownArrow } from "../../styles/Icons";
 import { DropdownButton, DropdownList } from "../../styles/Buttons";
@@ -23,22 +23,15 @@ const GuestDropdown = ({ userInfo, handleChange, errors }) => {
     setDropdownIsOpen(false);
   };
 
-  const dropdownRef = useRef();
-  const handleClickOutside = (e) => {
-    if (!dropdownRef.current.contains(e.target)) {
-      setDropdownIsOpen(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
   return (
-    <DropdownContainer ref={dropdownRef}>
+    <DropdownContainer
+      tabIndex={0} //Default focus
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          setDropdownIsOpen(false);
+        }
+      }}
+    >
       <DropdownButton
         type="button"
         onClick={() => setDropdownIsOpen(!dropdownIsOpen)}

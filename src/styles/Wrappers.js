@@ -6,7 +6,6 @@ export const AppWrapper = styled.div`
   text-align: center;
   background-color: white;
   min-height: 100vh;
-  /* min-width: 150vw; */
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -83,7 +82,7 @@ export const HeaderWrapper = styled.header`
 export const InnerWrapper = styled.div`
   margin: 0 auto;
   padding: ${({ $isScrolled }) =>
-    $isScrolled ? "0.3rem 2rem" : "0.9rem 2rem"};
+    $isScrolled ? "0.2rem 2rem" : "0.9rem 2rem"};
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -9,26 +9,33 @@ import validateUserInfo from "../functions/validateNecessaryFields";
 import { SubmitButton } from "../styles/Buttons";
 import { AppWrapper, SectionWrapper } from "../styles/Wrappers";
 
+// const initialState = {
+//   name: "",
+//   email: "",
+//   phoneNumber: "",
+//   reservationDate: new Date(),
+//   selectedSlot: null,
+//   amountOfGuests: null,
+// };
+
 const ReservationPage = () => {
-  const initialState = {
+  const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
     phoneNumber: "",
     reservationDate: new Date(),
     selectedSlot: null,
     amountOfGuests: null,
-  };
-
-  const [userInfo, setUserInfo] = useState(initialState);
+  });
   const [errors, setErrors] = useState({}); //Handle errors
 
-  function handleChange(e) {
+  const handleChange = (e) => {
     const { id, value } = e.target;
     setUserInfo((prev) => ({ ...prev, [id]: value }));
-  }
+  };
 
   // Handle submit button
-  function handleSubmit(e) {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
     //Handle errors
@@ -61,9 +68,16 @@ const ReservationPage = () => {
     const sound = new Audio(notifSound);
     sound.play();
     toast.success("Reservation submitted successfully!");
-    setUserInfo(initialState);
+    setUserInfo({
+      name: "",
+      email: "",
+      phoneNumber: "",
+      reservationDate: new Date(),
+      selectedSlot: null,
+      amountOfGuests: null,
+    });
     setErrors({});
-  }
+  };
 
   return (
     <AppWrapper as="form" onSubmit={handleSubmit}>
