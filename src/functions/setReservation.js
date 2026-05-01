@@ -1,4 +1,4 @@
-const setReservation = (day, time, handleChange) => {
+const setReservation = (day, time, setReservationDate, setSelectedSlot) => {
   const reservDate = new Date(day);
 
   const [hour, cycle] = time.split(" ");
@@ -10,10 +10,8 @@ const setReservation = (day, time, handleChange) => {
   reservDate.setMinutes(0);
   reservDate.setSeconds(0);
 
-  handleChange({ target: { id: "reservationDate", value: reservDate } });
-  handleChange({
-    target: { id: "selectedSlot", value: `${day.toDateString()}-${time}` },
-  });
+  setReservationDate(reservDate);
+  setSelectedSlot(`${day.toDateString()}-${time}`);
 };
 
 export default setReservation;

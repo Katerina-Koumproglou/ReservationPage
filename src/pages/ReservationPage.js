@@ -9,34 +9,27 @@ import validateUserInfo from "../functions/validateNecessaryFields";
 import { SubmitButton } from "../styles/Buttons";
 import { AppWrapper, SectionWrapper } from "../styles/Wrappers";
 
-// const initialState = {
-//   name: "",
-//   email: "",
-//   phoneNumber: "",
-//   reservationDate: new Date(),
-//   selectedSlot: null,
-//   amountOfGuests: null,
-// };
-
 const ReservationPage = () => {
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    email: "",
-    phoneNumber: "",
-    reservationDate: new Date(),
-    selectedSlot: null,
-    amountOfGuests: null,
-  });
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [reservationDate, setReservationDate] = useState(new Date());
+  const [selectedSlot, setSelectedSlot] = useState(null);
+  const [amountOfGuests, setAmountOfGuests] = useState(null);
   const [errors, setErrors] = useState({}); //Handle errors
-
-  const handleChange = (e) => {
-    const { id, value } = e.target;
-    setUserInfo((prev) => ({ ...prev, [id]: value }));
-  };
 
   // Handle submit button
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const userInfo = {
+      name,
+      email,
+      phoneNumber,
+      reservationDate,
+      selectedSlot,
+      amountOfGuests,
+    };
 
     //Handle errors
     const tempErrors = validateUserInfo(userInfo);
@@ -68,14 +61,13 @@ const ReservationPage = () => {
     const sound = new Audio(notifSound);
     sound.play();
     toast.success("Reservation submitted successfully!");
-    setUserInfo({
-      name: "",
-      email: "",
-      phoneNumber: "",
-      reservationDate: new Date(),
-      selectedSlot: null,
-      amountOfGuests: null,
-    });
+
+    setName("");
+    setEmail("");
+    setPhoneNumber("");
+    setReservationDate(new Date());
+    setSelectedSlot(null);
+    setAmountOfGuests(null);
     setErrors({});
   };
 
@@ -84,15 +76,22 @@ const ReservationPage = () => {
       <SectionWrapper>
         {/* CONTACT INFORMATION SECTION */}
         <ContactInfo
-          userInfo={userInfo}
-          handleChange={handleChange}
+          name={name}
+          setName={setName}
+          email={email}
+          setEmail={setEmail}
+          phoneNumber={phoneNumber}
+          setPhoneNumber={setPhoneNumber}
           errors={errors}
         />
 
         {/* RESERVATION DETAILS SECTION */}
         <ReservationDetails
-          userInfo={userInfo}
-          handleChange={handleChange}
+          setReservationDate={setReservationDate}
+          selectedSlot={selectedSlot}
+          setSelectedSlot={setSelectedSlot}
+          amountOfGuests={amountOfGuests}
+          setAmountOfGuests={setAmountOfGuests}
           errors={errors}
         />
       </SectionWrapper>

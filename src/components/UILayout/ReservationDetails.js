@@ -13,7 +13,14 @@ import { RequiredError } from "../../styles/Errors";
 import WeeklyCalendar from "./WeeklyCalendar";
 import GuestDropdown from "./GuestDropdown";
 
-const ReservationDetails = ({ userInfo, handleChange, errors }) => {
+const ReservationDetails = ({
+  setReservationDate,
+  selectedSlot,
+  setSelectedSlot,
+  amountOfGuests,
+  setAmountOfGuests,
+  errors,
+}) => {
   const [currentWeek, setCurrentWeek] = useState(new Date());
   const [timeCycle, setTimeCycle] = useState("AM"); //AM or PM
 
@@ -70,8 +77,8 @@ const ReservationDetails = ({ userInfo, handleChange, errors }) => {
         </NavWeekButtonWrapper>
         {/* AMOUNT OF PEOPLE DROPDOWN */}
         <GuestDropdown
-          userInfo={userInfo}
-          handleChange={handleChange}
+          amountOfGuests={amountOfGuests}
+          setAmountOfGuests={setAmountOfGuests}
           errors={errors}
         />
       </InputContactInfoWrapper>
@@ -80,8 +87,9 @@ const ReservationDetails = ({ userInfo, handleChange, errors }) => {
         weekDays={weekDays}
         savedReservations={savedReservations}
         timeSlots={timeSlots}
-        userInfo={userInfo}
-        handleChange={handleChange}
+        setReservationDate={setReservationDate}
+        selectedSlot={selectedSlot}
+        setSelectedSlot={setSelectedSlot}
       />
       <RequiredError>
         {errors.selectedSlot ? errors.selectedSlot : ""}

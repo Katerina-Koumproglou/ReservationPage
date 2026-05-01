@@ -7,7 +7,15 @@ import {
 } from "../../styles/Wrappers";
 import { SectionTitle } from "../../styles/Texts";
 
-const ContactInfo = ({ userInfo, handleChange, errors }) => {
+const ContactInfo = ({
+  name,
+  setName,
+  email,
+  setEmail,
+  phoneNumber,
+  setPhoneNumber,
+  errors,
+}) => {
   return (
     <SectionWrapper>
       <SectionTitle>CONTACT INFORMATION</SectionTitle>
@@ -18,8 +26,8 @@ const ContactInfo = ({ userInfo, handleChange, errors }) => {
             type="text"
             id="name"
             placeholder="Your Name"
-            value={userInfo.name}
-            onChange={handleChange}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
           <RequiredError>{errors.name ? errors.name : ""}</RequiredError>
         </ColumnWrapper>
@@ -29,8 +37,8 @@ const ContactInfo = ({ userInfo, handleChange, errors }) => {
             type="text"
             id="email"
             placeholder="Email"
-            value={userInfo.email}
-            onChange={handleChange}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
           />
           <RequiredError>{errors.email ? errors.email : ""}</RequiredError>
         </ColumnWrapper>
@@ -40,8 +48,8 @@ const ContactInfo = ({ userInfo, handleChange, errors }) => {
             type="tel"
             id="phoneNumber"
             placeholder="Phone Number"
-            value={userInfo.phoneNumber}
-            onChange={handleChange}
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
           />
           <RequiredError>
             {errors.phoneNumber ? errors.phoneNumber : ""}

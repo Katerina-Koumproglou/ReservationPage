@@ -11,8 +11,9 @@ const WeeklyCalendar = ({
   weekDays,
   savedReservations,
   timeSlots,
-  userInfo,
-  handleChange,
+  setReservationDate,
+  selectedSlot,
+  setSelectedSlot,
 }) => {
   return (
     <WeekHeader style={{ marginTop: "1rem" }}>
@@ -36,10 +37,10 @@ const WeeklyCalendar = ({
               key={index}
               type="button"
               disabled={isTimeSlotBooked(day, time, savedReservations)}
-              $isActive={
-                userInfo.selectedSlot === `${day.toDateString()}-${time}`
+              $isActive={selectedSlot === `${day.toDateString()}-${time}`}
+              onClick={() =>
+                setReservation(day, time, setReservationDate, setSelectedSlot)
               }
-              onClick={() => setReservation(day, time, handleChange)}
             >
               {time}
             </SimpleButton>

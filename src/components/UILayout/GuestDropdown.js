@@ -5,7 +5,7 @@ import { DropdownButton, DropdownList } from "../../styles/Buttons";
 import { DropdownItem } from "../../styles/Inputs";
 import { RequiredError } from "../../styles/Errors";
 
-const GuestDropdown = ({ userInfo, handleChange, errors }) => {
+const GuestDropdown = ({ amountOfGuests, setAmountOfGuests, errors }) => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
 
   //Dropdown menu logic
@@ -19,7 +19,7 @@ const GuestDropdown = ({ userInfo, handleChange, errors }) => {
   ];
 
   const handleDropdownSelect = (guestsOptions) => {
-    handleChange({ target: { id: "amountOfGuests", value: guestsOptions } });
+    setAmountOfGuests(guestsOptions);
     setDropdownIsOpen(false);
   };
 
@@ -36,7 +36,7 @@ const GuestDropdown = ({ userInfo, handleChange, errors }) => {
         type="button"
         onClick={() => setDropdownIsOpen(!dropdownIsOpen)}
       >
-        {userInfo.amountOfGuests || "Number of People"}
+        {amountOfGuests || "Number of People"}
         <DropdownArrow $isOpen={dropdownIsOpen}>˄</DropdownArrow>
       </DropdownButton>
       {dropdownIsOpen && (
